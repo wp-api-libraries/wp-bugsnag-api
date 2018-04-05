@@ -256,7 +256,6 @@ if ( ! class_exists( 'Basecamp3API' ) ) {
 		
 		public function create_project_in_org( $org_id, $name, $type = 'wordpress', $ignore_old_browsers = true ){
 			$args = compact ( 'name', 'type', 'ignore_old_browsers' );
-			_error_log($args );
 			return $this->run( "organizations/$org_id/projects", $args, 'POST' );
 		}
 		
@@ -271,8 +270,7 @@ if ( ! class_exists( 'Basecamp3API' ) ) {
 		public function get_project_errors( $project_id, $args = array() ) {
 			return $this->run( "projects/$project_id/errors", $args );
 		}
-		
-	
+
 
 	}
 }
