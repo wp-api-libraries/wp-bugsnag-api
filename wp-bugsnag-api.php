@@ -211,7 +211,7 @@ if ( ! class_exists( 'Basecamp3API' ) ) {
 				return $response;
 			}
 			
-			return null;
+			return false;
 		}
 		
 		public function has_next(){
