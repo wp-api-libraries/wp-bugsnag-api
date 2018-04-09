@@ -62,8 +62,22 @@ if ( ! class_exists( 'Basecamp3API' ) ) {
 		 */
 		public $links;
 		
+		/**
+		 * total
+		 * 
+		 * @var mixed
+		 * @access public
+		 */
 		public $total;
 		
+		/**
+		 * is_next
+		 * 
+		 * (default value: false)
+		 * 
+		 * @var bool
+		 * @access private
+		 */
 		private $is_next = false;
 
 
@@ -162,6 +176,13 @@ if ( ! class_exists( 'Basecamp3API' ) ) {
 			}
 		}
 		
+		/**
+		 * get_total_count function.
+		 * 
+		 * @access protected
+		 * @param mixed $response
+		 * @return void
+		 */
 		protected function get_total_count( $response ){
 			$this->total = wp_remote_retrieve_header( $response, 'x-total-count' );
 		}
@@ -197,6 +218,12 @@ if ( ! class_exists( 'Basecamp3API' ) ) {
 			return ( 200 <= $code && 300 > $code );
 		}
 		
+		/**
+		 * next function.
+		 * 
+		 * @access public
+		 * @return void
+		 */
 		public function next(){
 			
 			if( $this->has_next() ){
@@ -214,6 +241,12 @@ if ( ! class_exists( 'Basecamp3API' ) ) {
 			return false;
 		}
 		
+		/**
+		 * has_next function.
+		 * 
+		 * @access public
+		 * @return void
+		 */
 		public function has_next(){
 			return isset( $this->links['next'] );
 		}
@@ -254,6 +287,16 @@ if ( ! class_exists( 'Basecamp3API' ) ) {
 			return $this->run( "organizations/$org_id/projects", $args );
 		}
 		
+		/**
+		 * create_project_in_org function.
+		 * 
+		 * @access public
+		 * @param mixed $org_id
+		 * @param mixed $name
+		 * @param string $type (default: 'wordpress')
+		 * @param bool $ignore_old_browsers (default: true)
+		 * @return void
+		 */
 		public function create_project_in_org( $org_id, $name, $type = 'wordpress', $ignore_old_browsers = true ){
 			$args = compact ( 'name', 'type', 'ignore_old_browsers' );
 			return $this->run( "organizations/$org_id/projects", $args, 'POST' );
