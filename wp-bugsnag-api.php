@@ -17,10 +17,10 @@
  * GitHub Branch: master
  */
 
-/* Exit if accessed directly */
-if ( ! defined( 'ABSPATH' ) ) { exit; }
+// Exit if accessed directly.
+defined( 'ABSPATH' ) || exit;
 
-if ( ! class_exists( 'Basecamp3API' ) ) {
+if ( ! class_exists( 'WPBugsnagAPI' ) ) {
 
 	/**
 	 * A WordPress API library for accessing the Bugsnag API.
